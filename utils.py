@@ -46,17 +46,18 @@ def get_columns_name(df):
                 col_list)
             st.session_state['col_index_value'] = index_value_col
         st.form_submit_button(label='Submit')
-    st.markdown(
-        f'''
-        You have selected:
-        - the column <strong>{st.session_state['col_date']}</strong> for dates, 
-        - the column <strong>{st.session_state['col_country_name']}</strong> for countries,
-        - the column <strong>{st.session_state['col_country_code']}</strong> for country codes,
-        - the column <strong>{st.session_state['col_index_name']}</strong> for index name,
-        - the column <strong>{st.session_state['col_index_value']}</strong> for index value
-        ''',
-        unsafe_allow_html=True)
-    st.markdown('''[Go to the viz section](/viz)''')
+    if 'Submit':
+        st.markdown(
+            f'''
+            You have selected:
+            - the column <strong>{st.session_state['col_date']}</strong> for dates, 
+            - the column <strong>{st.session_state['col_country_name']}</strong> for countries,
+            - the column <strong>{st.session_state['col_country_code']}</strong> for country codes,
+            - the column <strong>{st.session_state['col_index_name']}</strong> for index name,
+            - the column <strong>{st.session_state['col_index_value']}</strong> for index value
+            ''',
+            unsafe_allow_html=True)
+        st.markdown('''[Go to the viz section](/viz)''')
 
 @st.cache
 def get_dates(data, date_column='col_date', freq='AS'):
@@ -173,8 +174,6 @@ def head():
             }
         </style>
     """, unsafe_allow_html=True)
-
-
 
 def footer():
     st.markdown("---")
